@@ -15,13 +15,22 @@ const config = {
 			// default options are shown
 			pages: 'build',
 			assets: 'build',
-			fallback: 'index.html',
+			fallback: '404.html',
 			precompress: false,
 			strict: true
 		}),
 		paths: {
 			base: process.env.NODE_ENV === 'production' ? '/heartmaster' : '',
 			relative: false
+		},
+		prerender: {
+			handleHttpError: ({ path, referrer, message }) => {
+				// ignore missing files
+				if (message.includes('Not Found')) {
+					return;
+				}
+				throw new Error(message);
+			}
 		}
 	}
 };
