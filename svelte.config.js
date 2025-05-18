@@ -20,7 +20,7 @@ const config = {
 			strict: true
 		}),
 		paths: {
-			base: process.env.NODE_ENV === 'production' ? '/Quizzz' : '',
+			base: process.env.BASE_PATH || (process.env.NODE_ENV === 'production' ? '/Quizzz' : ''),
 			relative: false
 		},
 		prerender: {
